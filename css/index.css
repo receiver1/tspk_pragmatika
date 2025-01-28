@@ -1,0 +1,616 @@
+@import "./font.css";
+
+*, *::before, *::after {
+    margin: 0;
+    font-family: 'Roboto';
+    box-sizing: border-box;
+}
+
+input, button {
+    padding: 8px 16px;
+    outline: none;
+    border: 1px solid #000;
+    border-radius: 0;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    -webkit-animation-name: fadeIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s
+}
+  
+.modal-content {
+    position: fixed;
+    bottom: 0;
+    background-color: #fefefe;
+    width: 100%;
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s
+}
+
+.close {
+    color: white;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    user-select: none;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 16px;
+    background-color: #000;
+    color: white;
+}
+  
+.modal-body {
+    padding: 6px 16px;
+}
+  
+.modal-footer {
+    color: white;
+    padding: 6px 16px;
+    background-color: #000;
+}
+
+@-webkit-keyframes slideIn {
+    from {bottom: -300px; opacity: 0} 
+    to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    background: #FFF;
+    transition: transform 500ms ease-in-out;
+}
+
+.preloader-active {
+    transform: translate(-100%);
+}
+
+.preloader-deactive {
+    transform: translate(100%);
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1280px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    padding: 25px 0;
+}
+
+.header-title {
+    color: #102020;
+    font-size: 24px;
+    text-decoration: none;
+    font-family: 'Russo One';
+}
+
+.header-item {
+    margin-left: 30px;
+    text-decoration: none;
+    color: rgba(0,0,0,.6);
+    fill: rgba(0,0,0,.6);
+    transition: 300ms ease-out;
+}
+
+.header-item:hover {
+    color: #378F90;
+    fill: #378F90;
+}
+
+.header-right {
+    margin-left: auto;
+}
+
+.hamburger-lines {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 18px;
+}
+
+.hamburger-line,
+.hamburger-line::before,
+.hamburger-line::after {
+    position: absolute;
+    display: block;
+    content: "";
+    width: 20px;
+    height: 2px;
+    background: rgba(0,0,0,.6);
+    transition-timing-function: ease;
+    transition-duration: .15s;
+}
+
+.hamburger-line {
+    top: 50%;
+    margin-top: -2px;
+    transition-duration: 75ms;
+    transition-timing-function: cubic-bezier(.55,.055,.675,.19);
+}
+
+.hamburger-line::before {
+    top: -8px;
+}
+
+.hamburger-line::after {
+    bottom: -8px;
+}
+
+.hamburger-active .hamburger-line {
+    transition-delay: .12s;
+    transition-timing-function: cubic-bezier(.215,.61,.355,1);
+    transform: rotate(45deg);
+}
+
+.hamburger-active .hamburger-line::before {
+    top: 0;
+    transition: top 75ms ease,opacity 75ms ease .12s;
+    opacity: 0;
+}
+
+.hamburger-active .hamburger-line::after {
+    bottom: 0;
+    transition: bottom 75ms ease,transform 75ms cubic-bezier(.215,.61,.355,1) .12s;
+    transform: rotate(-90deg);
+}
+
+.hamburger-active .hamburger-menu {
+    transform: scaleY(100%);
+}
+
+.hamburger-menu {
+    width: 100%;
+    z-index: 998;
+    padding: 15px 0;
+    position: absolute;
+    transform: scaleY(0%);
+    background: rgba(0,0,0,.95);
+    transform-origin: top center;
+    transition: transform 200ms ease-out;
+}
+
+.hamburger-menu > .container {
+    display: flex;
+}
+
+.hamburger-item {
+    color: #FFF;
+    text-decoration: none;
+}
+
+.hamburger-item:not(:first-child) {
+    padding-left: 25px;
+}
+
+.general {
+    display: flex;
+    align-items: center;
+    margin-bottom: 60px;
+}
+
+.general-theme {
+    font-size: 14px;
+    align-self: flex-start;
+    margin-right: 15px;
+    writing-mode: vertical-lr;
+    transform: rotate(-180deg);
+    text-transform: uppercase;
+}
+
+.general-image {
+    max-width: 650px;
+    max-height: 550px;
+    object-fit: cover;
+}
+
+.general-body {
+    margin-left: 45px;
+}
+
+.general-title {
+    font-size: 42px;
+    margin-bottom: 30px;
+    font-family: 'Russo One';
+}
+
+.general-text {
+    padding-left: 20px;
+    color: rgba(0,0,0,.75);
+    border-left: 6px solid #102020;
+}
+
+.general-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.general-author {
+    display: block;
+    color: #102020;
+    text-decoration: none;
+}
+
+.general-read {
+    color: #102020;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: 300ms ease-out;
+}
+
+.general-read:hover {
+    color: #378F90;
+    fill: #378F90;
+}
+
+.block-title {
+    margin: 60px 0 30px 0;
+    font-size: 24px;
+    font-family: 'Russo One';
+    border-top: 4px solid #102020;
+    border-bottom: 4px solid #102020;
+}
+
+.news-group {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.news-group > .news {
+    width: 33.3333%;
+    padding: 0 20px 30px 20px;
+}
+
+.news-group > .news:first-child {
+    padding-left: 0;
+}
+
+.news-group > .news:last-child {
+    padding-right: 0;
+}
+
+.news {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.news-theme {
+    font-size: 14px;
+    align-self: flex-start;
+    margin-right: 15px;
+    writing-mode: vertical-lr;
+    transform: rotate(-180deg);
+    text-transform: uppercase;
+}
+
+.news-body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.news-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.news-title {
+    font-size: 18px;
+    margin: 20px 0;
+    font-family: 'Russo One';
+}
+
+.news-container,
+.news-container > * {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.news-container > img {
+    height: 500px;
+}
+
+.text-container {
+    max-width: 540px;
+    margin: 0 auto;
+    padding: 30px 0;
+}
+
+.text-theme {
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+.text-title {
+    font-size: 32px;
+    font-family: 'Russo One';
+    margin-bottom: 15px;
+}
+
+.mailing-card {
+    color: #FFF;
+    padding: 16px;
+    text-align: center;
+    background: #378F90;
+}
+
+.mailing-title {
+    font-size: 22px;
+    font-family: 'Russo One';
+    margin-bottom: 15px;
+}
+
+.mailing-group {
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
+}
+
+.mailing-icon {
+    border: 1px solid #102020;
+    border-right: none;
+    height: 36px;
+    padding: 8px;
+    background: #FFF;
+}
+
+.mailing-input,
+.mailing-button {
+    border-radius: 0;
+    background: #FFF;
+    display: inline-block;
+    border: 1px solid #102020;
+    vertical-align: middle;
+}
+
+.mailing-input {
+    border-left: none;
+    padding: 8px;
+    outline: none;
+    transition: 500ms ease-out;
+}
+
+.mailing-input:focus {
+    background: rgba(255,255,255,.9);
+    border-color: rgba(0,0,0,.9);
+}
+
+.mailing-button {
+    padding: 8px;
+    border-left: none;
+    line-height: 100%;
+    transition: 500ms ease-out;
+}
+
+.mailing-button:hover {
+    fill: #FFF;
+    background: #102020;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding-left: 0;
+    list-style: none;
+    margin-bottom: 3rem;
+}
+
+.pagination-item {
+    position: relative;
+    display: block;
+    color: #000;
+    text-decoration: none;
+    padding: .375rem .75rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    margin: 5px;
+    transition: 500ms ease-out;
+}
+
+.pagination-active,
+.pagination-item:hover {
+    color: #fff;
+    background: #378F90;
+}
+
+.footer {
+    background: #102020;
+    padding: 2rem 0;
+}
+
+.footer,
+.footer a {
+    color: rgba(255,255,255,.5);
+}
+
+.footer-blocks {
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-blocks > .footer-block {
+    width: 50%;
+}
+
+.footer-title {
+    color: rgba(255,255,255,.75);
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.footer-links {
+    list-style: none;
+    text-align: right;
+}
+
+.footer-links a {
+    text-decoration: none;
+    transition: 300ms ease-out;
+}
+
+.footer-links a:hover {
+    color: #378F90;
+}
+
+.footer-copyright {
+    margin-top: 5rem;
+    font-size: 14px;
+    text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .header-hidden {
+        display: none;
+    }
+
+    .hamburger-menu > .container {
+        text-align: center;
+        flex-direction: column;
+    }
+
+    .hamburger-item:not(:first-child) {
+        padding-left: 0;
+        padding-top: 5px;
+        border-top: 1px solid #FFF;
+    }
+
+    .hamburger-item:not(:last-child) {
+        padding-bottom: 5px;
+    }
+
+    .news-group > .news { 
+        width: 100%;
+        padding: 0;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+    .news-group > .news { 
+        width: 50%;
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .general-theme {
+        writing-mode: horizontal-tb;
+        transform: rotate(0);
+        margin-bottom: 15px;
+    }
+
+    .general-body {
+        margin-left: 0;
+    }
+
+    .general-title {
+        font-size: 32px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .general {
+        flex-wrap: wrap;
+    }
+
+    .general-image {
+        width: 100%;
+        margin-bottom: 2rem;
+        max-width: unset;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .container {
+        max-width: 90%;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+
+    .header-hidden {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    .container {
+        max-width: 1320px;
+    }
+}
